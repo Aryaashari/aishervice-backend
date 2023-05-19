@@ -12,8 +12,7 @@ public class HomeController {
 
     @GetMapping
     public String index(Model model) {
-        String nameTes = "Arya";
-        model.addAttribute("name", nameTes);
+        model.addAttribute("currentPage","index");
         return "index";
     }
 }
