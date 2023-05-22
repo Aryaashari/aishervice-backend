@@ -66,10 +66,39 @@ public class CustomerRepositoryTest {
         try {
             Customer insertedCustomer = this.customerRepo.insertData(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
             Customer customer = this.customerRepo.getDataByIdPelanggan(insertedCustomer.getIdPelanggan());
+            System.out.println(customer);
             Assertions.assertEquals(customer.getNama(), "Arya");
-            Assertions.assertEquals(customer.getNoHp(), "081215750405");
-            Assertions.assertEquals(customer.getAlamat(), "sukapur");
+            Assertions.assertEquals(customer.getAlamat(), "sukapura");
             Assertions.assertEquals(customer.getEmail(), "arya@gmail.com");
+            Assertions.assertEquals(customer.getNoHp(), "081215750405");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test 
+    public void testInsertData() {
+        try {
+            Customer customer = this.customerRepo.insertData(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
+            Assertions.assertEquals(customer.getNama(), "Arya");
+            Assertions.assertEquals(customer.getAlamat(), "sukapura");
+            Assertions.assertEquals(customer.getEmail(), "arya@gmail.com");
+            Assertions.assertEquals(customer.getNoHp(), "081215750405");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDeleteData() {
+        try {
+             
+            Customer customer = this.customerRepo.insertData(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
+            this.customerRepo.deleteData(customer.getIdPelanggan());
+
+            customer = this.customerRepo.getDataByIdPelanggan(customer.getIdPelanggan());
+
+            Assert.isNull(customer, "null");
         } catch (Exception e) {
             e.printStackTrace();
         }

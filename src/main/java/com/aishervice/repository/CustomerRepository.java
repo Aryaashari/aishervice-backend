@@ -24,7 +24,6 @@ public class CustomerRepository {
              
             ResultSet result = pstmt.executeQuery();
 
-            int i=0;
             ArrayList<Customer> customers = new ArrayList<Customer>();
             Customer customer;
             while (result.next()) {
