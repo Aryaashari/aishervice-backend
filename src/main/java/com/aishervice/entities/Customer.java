@@ -7,8 +7,7 @@ public class Customer {
     private String alamat;
     private String email;
 
-    public Customer(int idPelanggan, String nama, String noHp, String alamat, String email) {
-        this.idPelanggan = idPelanggan;
+    public Customer(String nama, String noHp, String alamat, String email) {
         this.nama = nama;
         this.noHp = noHp;
         this.alamat = alamat;
@@ -16,6 +15,10 @@ public class Customer {
         
     }
 
+    public void setIdPelanggan(int id_pelanggan) {
+        this.idPelanggan = id_pelanggan;
+    }
+    
     public int getIdPelanggan() {
         return this.idPelanggan;
     }

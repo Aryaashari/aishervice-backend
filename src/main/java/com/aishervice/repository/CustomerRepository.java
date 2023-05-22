@@ -28,7 +28,8 @@ public class CustomerRepository {
             ArrayList<Customer> customers = new ArrayList<Customer>();
             Customer customer;
             while (result.next()) {
-                customer = new Customer(result.getInt("id_pelanggan"), result.getString("nama"), result.getString("no_hp"), result.getString("alamat"), result.getString("email"));
+                customer = new Customer(result.getString("nama"), result.getString("no_hp"), result.getString("alamat"), result.getString("email"));
+                customer.setIdPelanggan(result.getInt("id_pelanggan"));
                 customers.add(customer);
             }
 
@@ -49,7 +50,8 @@ public class CustomerRepository {
             ResultSet result = pstmt.executeQuery();
             Customer customer = null;
             if (result.next()) {
-                customer = new Customer(result.getInt("id_pelanggan"), result.getString("nama"), result.getString("no_hp"), result.getString("alamat"), result.getString("email"));
+                customer = new Customer(result.getString("nama"), result.getString("no_hp"), result.getString("alamat"), result.getString("email"));
+                customer.setIdPelanggan(result.getInt("id_pelanggan"));
             }
 
             return customer;
@@ -60,18 +62,28 @@ public class CustomerRepository {
     }
 
 
-    public void insertData(Customer customer) throws Exception {
+    public Customer insertData(Customer customer) throws Exception {
 
         String syntax = "INSERT INTO customer(nama,no_hp,alamat,email) VALUES(?,?,?,?)";
 
         try (PreparedStatement pstmt = this.conn.prepareStatement(syntax)) {
 
             pstmt.setString(1, customer.getNama());
-            pstmt.setString(1, customer.getNoHp());
-            pstmt.setString(1, customer.getAlamat());
-            pstmt.setString(1, customer.getEmail());
+            pstmt.setString(2, customer.getNoHp());
+            pstmt.setString(3, customer.getAlamat());
+            pstmt.setString(4, customer.getEmail());
 
-            pstmt.executeUpdate();
+            int rowsInserted = pstmt.executeUpdate();
+
+            if (rowsInserted > 0) {
+                ResultSet generatedKeys = pstmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int lastInsertedId = generatedKeys.getInt(1);
+                    customer.setIdPelanggan(lastInsertedId);
+                }
+            }
+
+            return customer;
 
         } catch (Exception e) {
             throw e;
@@ -93,4 +105,13 @@ public class CustomerRepository {
         }
     }
 
+    public void deleteAll() throws Exception {
+        String syntax = "DELETE FROM customer";
+
+        try (PreparedStatement pstmt = this.conn.prepareStatement(syntax)) {
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
