@@ -13,6 +13,7 @@ public class Customer {
         this.noHp = noHp;
         this.alamat = alamat;
         this.email = email;
+        
     }
 
     public int getIdPelanggan() {
