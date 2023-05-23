@@ -28,6 +28,13 @@
                 <div class="row layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
                         <div class="widget-content-area br-4">
+
+                            
+                            <div class="alert alert-success mb-4" role="alert" th:if="${success}">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                <strong th:text="${success}"></button>
+                            </div> 
+
                             <div class="widget-one">
 
                                 <ul class="nav nav-tabs  mb-3 mt-3 nav-fill" id="justifyTab" role="tablist">
@@ -41,25 +48,13 @@
                                 
                                 <div class="tab-content" id="justifyTabContent">
                                     <div class="tab-pane fade show active" id="justify-home" role="tabpanel" aria-labelledby="justify-home-tab">
-                                        <div class="input-group mb-4">
-                                            <div class="input-group-prepend">
-                                              <span class="input-group-text"> ID_Pelanggan </span>
-                                            </div>
-                                            <input type="text" class="form-control">
-                                          </div>
+                                       
         
-                                          <form class="needs-validation" novalidate action="javascript:void(0);">
+                                          <form class="needs-validation" novalidate action="/pelanggan" method="post">
                                             <div class="form-row">
                                                 <div class="col-md-4 mb-5">
-                                                    <label for="validationTooltip01">Nama depan</label>
-                                                    <input type="text" class="form-control" id="validationTooltip01" placeholder="Nama depan" autocomplete="off"value="" required>
-                                                    <div class="valid-tooltip">
-                                                        Looks good!
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 mb-5">
-                                                    <label for="validationTooltip02">Nama Belakang</label>
-                                                    <input type="text" class="form-control" id="validationTooltip02" placeholder="Nama Belakang"autocomplete="off"value="" required>
+                                                    <label for="validationTooltip01">Nama</label>
+                                                    <input type="text" class="form-control" name="nama" id="validationTooltip01" placeholder="Nama depan" autocomplete="off"value="" required>
                                                     <div class="valid-tooltip">
                                                         Looks good!
                                                     </div>
@@ -70,23 +65,26 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Email" aria-describedby="validationTooltipUsernamePrepend" required>
+                                                        <input type="text" class="form-control" name="email" id="validationTooltipUsername" placeholder="Email" aria-describedby="validationTooltipUsernamePrepend" required>
                                                         <div class="invalid-tooltip">
                                                             Please choose a unique and valid username.
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col-md-6 mb-5">
+                                                <div class="col-md-4 mb-5">
                                                     <label for="validationTooltip03">Nomor Handphone</label>
-                                                    <input type="text" class="form-control" id="validationTooltip03" placeholder="Nomor Handphone" required>
+                                                    <input type="text" class="form-control" name="no_hp" id="validationTooltip03" placeholder="Nomor Handphone" required>
                                                     <div class="invalid-tooltip">
                                                         Please provide a valid city.
                                                     </div>
                                                 </div>
                                             </div>
-                                          <button class="btn btn-primary mt-2" type="submit">Submit form</button>
+                                            <div class="form-row">
+                                                <div class="col-12 mb-5">
+                                                    <textarea class="form-control" name="alamat" rows="4" placeholder="Alamat"></textarea>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary mt-2" type="submit">Tambah</button>
                                         </form>                                 
                                     </div>
                                     <div class="tab-pane fade" id="justify-contact" role="tabpanel" aria-labelledby="justify-contact-tab">
@@ -95,54 +93,24 @@
                                                 <thead>
                                                     <tr class="">
                                                         <th class="text-center">No</th>
-                                                        <th>Id Pelanggan</th>
-                                                        <th>Nama Depan</th>
-                                                        <th>Nama Belakang</th>
+                                                        <th>Nama</th>
                                                         <th>Email</th>
                                                         <th>No Handphone</th>
-                                                        
+                                                        <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="table-primary">
-                                                        <td class="text-center">1</td>
-                                                        <td>12311</td>
-                                                        <td>Ahmad</td>
-                                                        <td>Jaelani</td>
-                                                        <td>Jaelani@yahoo.com</td>
-                                                        <td>087736781492</td>
-                                                    </tr>
-                                                    <tr class="table-success">
-                                                        <td class="text-center">2</td>
-                                                        <td>12312</td>
-                                                        <td>Rifqi</td>
-                                                        <td>Barliant</td>
-                                                        <td>Barliant@gmail.com</td>
-                                                        <td>082183569253</td>
-                                                    </tr>
-                                                    <tr class="table-danger">
-                                                        <td class="text-center">3</td>
-                                                        <td>12313</td>
-                                                        <td>Aisha</td>
-                                                        <td>Putri</td>
-                                                        <td>aisput@gmail.com</td>
-                                                        <td>085624715252</td>
-                                                    </tr>
-                                                    <tr class="table-warning">
-                                                        <td class="text-center">4</td>
-                                                        <td>12314</td>
-                                                        <td>Arya</td>
-                                                        <td>Ashari</td>
-                                                        <td>Aryaashari@yahoo.com</td>
-                                                        <td>089867102983</td>
-                                                    </tr>
-                                                    <tr class="table-primary">
-                                                        <td class="text-center">5</td>
-                                                        <td>12315</td>
-                                                        <td>Reza</td>
-                                                        <td>Darmawan</td>
-                                                        <td>rezadarm@gmail.com</td>
-                                                        <td>081287150253</td>
+                                                    <tr class="table-primary" th:each="customer, index : ${customers}">
+                                                        <td class="text-center" th:text="${index.index + 1}"></td>
+                                                        <td th:text="${customer.getNama()}"></td>
+                                                        <td th:text="${customer.getEmail()}"></td>
+                                                        <td th:text="${customer.getNoHp()}"></td>
+                                                        <td>
+                                                            <form method="post" action="/pelanggan/delete">
+                                                                <input name="id" type="hidden" tf:value="${customer.getIdPelanggan()}"></input>
+                                                                <button class="btn btn-danger mt-2" type="submit">Hapus</button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
