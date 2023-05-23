@@ -17,7 +17,7 @@ public class CustomerRepository {
     }
 
 
-    public ArrayList<Customer> getAllData() throws Exception {
+    public ArrayList<Customer> findAll() throws Exception {
         String syntax = "SELECT id_pelanggan, nama, no_hp, alamat, email FROM customer";
 
         try (PreparedStatement pstmt = this.conn.prepareStatement(syntax)) {
@@ -39,7 +39,7 @@ public class CustomerRepository {
         }
     }
 
-    public Customer getDataByIdPelanggan(int id_pelanggan) throws Exception {
+    public Customer findByIdPelanggan(int id_pelanggan) throws Exception {
         String syntax = "SELECT id_pelanggan, nama, no_hp, alamat, email FROM customer WHERE id_pelanggan=?";
 
         try (PreparedStatement pstmt = this.conn.prepareStatement(syntax)) {
@@ -61,7 +61,7 @@ public class CustomerRepository {
     }
 
 
-    public Customer insertData(Customer customer) throws Exception {
+    public Customer store(Customer customer) throws Exception {
 
         String syntax = "INSERT INTO customer(nama,no_hp,alamat,email) VALUES(?,?,?,?)";
 
@@ -90,7 +90,7 @@ public class CustomerRepository {
 
     }
 
-    public void deleteData(int id_pelanggan) throws Exception {
+    public void delete(int id_pelanggan) throws Exception {
         String syntax = "DELETE FROM customer WHERE id_pelanggan=?";
 
         try (PreparedStatement pstmt = this.conn.prepareStatement(syntax)) {
