@@ -33,7 +33,7 @@ public class CustomerRepositoryTest {
     @Test
     public void testGetAllDataNotFound() {
         try {
-            ArrayList<Customer> customer = this.customerRepo.getAllData();
+            ArrayList<Customer> customer = this.customerRepo.findAll();
             Assertions.assertEquals(customer.size(), 0);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,8 +43,8 @@ public class CustomerRepositoryTest {
     @Test
     public void testGetAllDataFound() {
         try {
-            this.customerRepo.insertData(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
-            ArrayList<Customer> customer = this.customerRepo.getAllData();
+            this.customerRepo.store(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
+            ArrayList<Customer> customer = this.customerRepo.findAll();
             Assertions.assertEquals(customer.size(), 1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class CustomerRepositoryTest {
     @Test
     public void testGetDataByIdNotFound() {
         try {
-            Customer customer = this.customerRepo.getDataByIdPelanggan(999);
+            Customer customer = this.customerRepo.findByIdPelanggan(999);
             Assert.isNull(customer, "null");
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,8 +64,8 @@ public class CustomerRepositoryTest {
     @Test
     public void testGetDataByIdFound() {
         try {
-            Customer insertedCustomer = this.customerRepo.insertData(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
-            Customer customer = this.customerRepo.getDataByIdPelanggan(insertedCustomer.getIdPelanggan());
+            Customer insertedCustomer = this.customerRepo.store(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
+            Customer customer = this.customerRepo.findByIdPelanggan(insertedCustomer.getIdPelanggan());
             System.out.println(customer);
             Assertions.assertEquals(customer.getNama(), "Arya");
             Assertions.assertEquals(customer.getAlamat(), "sukapura");
@@ -79,7 +79,7 @@ public class CustomerRepositoryTest {
     @Test 
     public void testInsertData() {
         try {
-            Customer customer = this.customerRepo.insertData(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
+            Customer customer = this.customerRepo.store(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
             Assertions.assertEquals(customer.getNama(), "Arya");
             Assertions.assertEquals(customer.getAlamat(), "sukapura");
             Assertions.assertEquals(customer.getEmail(), "arya@gmail.com");
@@ -93,10 +93,10 @@ public class CustomerRepositoryTest {
     public void testDeleteData() {
         try {
              
-            Customer customer = this.customerRepo.insertData(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
-            this.customerRepo.deleteData(customer.getIdPelanggan());
+            Customer customer = this.customerRepo.store(new Customer("Arya", "081215750405", "sukapura", "arya@gmail.com"));
+            this.customerRepo.delete(customer.getIdPelanggan());
 
-            customer = this.customerRepo.getDataByIdPelanggan(customer.getIdPelanggan());
+            customer = this.customerRepo.findByIdPelanggan(customer.getIdPelanggan());
 
             Assert.isNull(customer, "null");
         } catch (Exception e) {
