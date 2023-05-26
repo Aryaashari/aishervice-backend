@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/")
 public class HomeController {
 
-    @GetMapping
+    @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("currentPage","index");
         return "index";

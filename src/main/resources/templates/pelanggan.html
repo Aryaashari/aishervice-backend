@@ -54,7 +54,7 @@
                                             <div class="form-row">
                                                 <div class="col-md-4 mb-5">
                                                     <label for="validationTooltip01">Nama</label>
-                                                    <input type="text" class="form-control" name="nama" id="validationTooltip01" placeholder="Nama depan" autocomplete="off"value="" required>
+                                                    <input type="text" class="form-control" name="nama" id="validationTooltip01" placeholder="Nama Lengkap" autocomplete="off"value="" required>
                                                     <div class="valid-tooltip">
                                                         Looks good!
                                                     </div>
@@ -96,6 +96,7 @@
                                                         <th>Nama</th>
                                                         <th>Email</th>
                                                         <th>No Handphone</th>
+                                                        <th>Alamat</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -105,6 +106,7 @@
                                                         <td th:text="${customer.getNama()}"></td>
                                                         <td th:text="${customer.getEmail()}"></td>
                                                         <td th:text="${customer.getNoHp()}"></td>
+                                                        <td th:text="${customer.getAlamat()}"></td>
                                                         <td>
                                                             <form method="post" action="/pelanggan/delete">
                                                                 <input name="id" type="hidden" tf:value="${customer.getIdPelanggan()}"></input>
